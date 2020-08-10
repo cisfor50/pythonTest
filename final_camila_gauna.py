@@ -27,13 +27,10 @@ def promedioDelCurso(listado):
 def ordenadorDeNotas(listado):
     notasOrdenadas = sorted(listado, key=lambda x: x['promedio'])
     if len(notasOrdenadas) == 1:
-        print(
-            f"{notasOrdenadas[0]['nombre']} es la única persona en el listado. Su promedio fue de: {notasOrdenadas[0]['promedio']}")
+        print(f"{notasOrdenadas[0]['nombre']} es la única persona en el listado. Su promedio fue de: {notasOrdenadas[0]['promedio']}")
     else:
-        print(
-            f"La nota más alta la obtuvo {notasOrdenadas[-1]['nombre']} con promedio de: {notasOrdenadas[-1]['promedio']}")
-        print(
-            f"La nota más baja la obtuvo {notasOrdenadas[0]['nombre']} con promedio de: {notasOrdenadas[0]['promedio']}")
+        print(f"La nota más alta la obtuvo {notasOrdenadas[-1]['nombre']} con promedio de: {notasOrdenadas[-1]['promedio']}")
+        print(f"La nota más baja la obtuvo {notasOrdenadas[0]['nombre']} con promedio de: {notasOrdenadas[0]['promedio']}")
 
 # Realizar una función que permita buscar un alumno por nombre, siendo el nombre completo o parcial,
 # y devuelva una lista con los n alumnos que concuerden con ese nombre junto con todos sus datos,
@@ -79,6 +76,4 @@ def main():
     buscador(listado_alumnos, busquedaDeAlumno)
 
     return listado_alumnos
-
-
 main()
