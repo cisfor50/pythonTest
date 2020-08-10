@@ -62,11 +62,10 @@ def main():
             nota = int(input("Nota: "))
             notas.append(nota)
             if (nota > 10):
-                print(
-                    "La nota debe estar comprendida entre 0 y 10. Por favor, vuelva a comenzar.")
+                print("La nota debe estar comprendida entre 0 y 10. Por favor, vuelva a comenzar.")
                 quit()
         for nota in notas:
-          total += nota
+            total += nota
         resultado = total / len(notas)
         promedio = round(resultado, 2)
         alumno = {'nombre': nombre, "notas": notas, "promedio": promedio}
