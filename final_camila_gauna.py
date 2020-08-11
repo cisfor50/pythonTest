@@ -11,8 +11,12 @@ def aprobador(listado):
             alumnosDesaprobados.append(alumno)
     if len(alumnosAprobados) != 0:
         print(f"Alumnos que aprobaron: {alumnosAprobados}")
+    elif len(alumnosAprobados) == 0:
+        print("Ningún alumno aprobó.")
     if len(alumnosDesaprobados) != 0:
         print(f"Alumnos que desaprobaron: {alumnosDesaprobados}")
+    elif len(alumnosDesaprobados) == 0:
+        print("Ningún alumno desaprobó.")
 
 # Informar el promedio de nota del curso total.
 def promedioDelCurso(listado):
@@ -54,8 +58,7 @@ def main():
     bienvenida = input("""
                                        ***Bienvenido al programa de gestión de notas del colegio***
                         Por cada alumno se le requerirá que ingrese 3 notas que deberán estar comprendidas entre 0 y 10.
-                        Por favor sea atento, si alguna nota es mayor a 10 el programa se reiniciará.
-                                                    PARA COMENZAR ESCRIBA "OK": """)
+                                                PARA COMENZAR ESCRIBA "OK" y presione ENTER: """)
     if bienvenida != "ok":
         quit()
     if bienvenida == "ok":
@@ -63,12 +66,14 @@ def main():
             notas = []
             total = 0
             nombre = input("Ingrese el nombre completo del alumno: ")
-            for i in range (3):
+            for i in range(3):
                 nota = int(input("Nota: "))
+                while nota not in range(0,11):
+                    print("La nota debe estar comprendida entre 0 y 10. Por favor, vuelva a ingresar la nota: ")
+                    nota = int(input("Nota: "))
+                    if nota in range(0,11):
+                        break
                 notas.append(nota)
-                if (nota > 10):
-                    print("La nota debe estar comprendida entre 0 y 10. Por favor, vuelva a comenzar.")
-                    main()
             for nota in notas:
                 total += nota
             resultado = total / len(notas)
