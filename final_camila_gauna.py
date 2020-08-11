@@ -11,7 +11,7 @@ def aprobador(listado):
             alumnosDesaprobados.append(alumno)
     if len(alumnosAprobados) != 0:
         print(f"Alumnos que aprobaron: {alumnosAprobados}")
-    elif len(alumnosDesaprobados) != 0:
+    if len(alumnosDesaprobados) != 0:
         print(f"Alumnos que desaprobaron: {alumnosDesaprobados}")
 
 # Informar el promedio de nota del curso total.
@@ -42,7 +42,7 @@ def buscador(listado, busqueda):
             encontrado.append(alumno)
     if len(encontrado) != 0:
         print(f"Estos fueron los resultados de tu búsqueda: {encontrado}")
-    elif len(encontrado) == 0:
+    else:
         print("Su búsqueda no ha arrojado resultados.")
 
 
@@ -51,29 +51,37 @@ def buscador(listado, busqueda):
 def main():
     salir = "si"
     listado_alumnos = []
-    while salir == "si":
-        notas = []
-        total = 0
-        nombre = input("Ingrese el nombre completo del alumno: ")
-        for i in range(3):
-            nota = int(input("Nota: "))
-            notas.append(nota)
-            if (nota > 10):
-                print("La nota debe estar comprendida entre 0 y 10. Por favor, vuelva a comenzar.")
-                quit()
-        for nota in notas:
-            total += nota
-        resultado = total / len(notas)
-        promedio = round(resultado, 2)
-        alumno = {'nombre': nombre, "notas": notas, "promedio": promedio}
-        listado_alumnos.append(alumno)
-        salir = input("Desea seguir cargando alumnos?: ")
+    bienvenida = input("""
+                                       ***Bienvenido al programa de gestión de notas del colegio***
+                        Por cada alumno se le requerirá que ingrese 3 notas que deberán estar comprendidas entre 0 y 10.
+                        Por favor sea atento, si alguna nota es mayor a 10 el programa se reiniciará.
+                                                    PARA COMENZAR ESCRIBA "OK": """)
+    if bienvenida != "ok":
+        quit()
+    if bienvenida == "ok":
+        while salir == "si":
+            notas = []
+            total = 0
+            nombre = input("Ingrese el nombre completo del alumno: ")
+            for i in range (3):
+                nota = int(input("Nota: "))
+                notas.append(nota)
+                if (nota > 10):
+                    print("La nota debe estar comprendida entre 0 y 10. Por favor, vuelva a comenzar.")
+                    quit()
+            for nota in notas:
+                total += nota
+            resultado = total / len(notas)
+            promedio = round(resultado, 2)
+            alumno = {'nombre': nombre, "notas": notas, "promedio": promedio}
+            listado_alumnos.append(alumno)
+            salir = input("¿Desea seguir cargando alumnos? (Si/No): ")
 
-    aprobador(listado_alumnos)
-    promedioDelCurso(listado_alumnos)
-    ordenadorDeNotas(listado_alumnos)
-    busquedaDeAlumno = input("Ingrese el nombre del alumno que desea buscar: ")
-    buscador(listado_alumnos, busquedaDeAlumno)
+        aprobador(listado_alumnos)
+        promedioDelCurso(listado_alumnos)
+        ordenadorDeNotas(listado_alumnos)
+        busquedaDeAlumno = input("Ingrese el nombre del alumno que desea buscar: ")
+        buscador(listado_alumnos, busquedaDeAlumno)
 
     return listado_alumnos
 main()
