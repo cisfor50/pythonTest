@@ -68,7 +68,7 @@ def main():
                 notas.append(nota)
                 if (nota > 10):
                     print("La nota debe estar comprendida entre 0 y 10. Por favor, vuelva a comenzar.")
-                    quit()
+                    main()
             for nota in notas:
                 total += nota
             resultado = total / len(notas)
