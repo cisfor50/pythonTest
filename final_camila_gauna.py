@@ -48,7 +48,7 @@ def buscador(listado, busqueda):
         print(f"Estos fueron los resultados de tu búsqueda: {encontrado}")
     else:
         print("Su búsqueda no ha arrojado resultados.")
-
+    return "ok"
 
 # Realizar una función que permita la carga de n alumnos. Por cada alumno se deberá preguntar el nombre completo
 # y permitir el ingreso de 3 notas. Las notas deben estar comprendidas entre 0 y 10. Devolver el listado de alumnos.
@@ -58,7 +58,7 @@ def main():
     bienvenida = input("""
                                        ***Bienvenido al programa de gestión de notas del colegio***
                         Por cada alumno se le requerirá que ingrese 3 notas que deberán estar comprendidas entre 0 y 10.
-                                                PARA COMENZAR ESCRIBA "OK" y presione ENTER: """)
+                                            PARA COMENZAR ESCRIBA "OK" y presione la tecla ENTER: """)
     if bienvenida != "ok":
         quit()
     if bienvenida == "ok":
@@ -85,8 +85,19 @@ def main():
         aprobador(listado_alumnos)
         promedioDelCurso(listado_alumnos)
         ordenadorDeNotas(listado_alumnos)
+#lógica de ayuda para la función buscador(): 
+#si en la búsqueda no se encuentran resultados se va a preguntar si desea seguir buscando
+#si responde que "si" se vuelve a ejecutar la búsqueda
+#si responde que "no" se finaliza el programa.
         busquedaDeAlumno = input("Ingrese el nombre del alumno que desea buscar: ")
-        buscador(listado_alumnos, busquedaDeAlumno)
+        salida = "si"
+        while (buscador(listado_alumnos, busquedaDeAlumno) == "ok" and salida == "si"):
+            salida = input("¿Desea realizar una nueva búsqueda? (Si/No): ")
+            if (salida == "si"):
+                busquedaDeAlumno = input("Ingrese el nombre del alumno que desea buscar: ")
+            elif (salida == "no"):
+                print("Gracias por utilizar el sistema de gestión de notas.")
+                quit()
 
     return listado_alumnos
 main()
